@@ -11,3 +11,5 @@ class Playlist extends React.Component {
 		</div>
 	}
 }
+
+export default Playlist;
