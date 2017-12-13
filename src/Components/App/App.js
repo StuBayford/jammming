@@ -5,6 +5,29 @@ import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
 
 class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchResults: [
+				{
+					name: 'Clocks',
+					artist: 'Coldplay',
+					album: 'A Rush of Blood to the Head'
+				},
+				{
+					name: 'Scientist',
+					artist: 'Coldplay',
+					album: 'A Rush of Blood to the Head'
+				},
+				{
+					name: 'Strawberry Swing',
+					artist: 'Coldplay',
+					album: 'Viva la Vida'
+				}
+			]
+		};
+	}
+
 	render() {
 		return (
 			<div>
