@@ -24,6 +24,24 @@ class App extends React.Component {
 					artist: 'Coldplay',
 					album: 'Viva la Vida'
 				}
+			],
+			playlistName: 'My Songs',
+			playlistTracks: [
+				{
+					name: 'Tiny Dancer',
+					artist: 'Elton John',
+					album: 'Madman Across the Water'
+				},
+				{
+					name: 'Stronger',
+					artist: 'Britney Spears',
+					album: 'Oops I Did it Again'
+				},
+				{
+					name: 'Brazil',
+					artist: 'Deadmau5',
+					album: 'Random Album Title'
+				},
 			]
 		};
 	}
@@ -36,7 +54,7 @@ class App extends React.Component {
 			    <!-- Add a SearchBar component -->
 			    <div className="App-playlist">
 			      <SearchResults searchResults={this.state.searchResults} />
-			      <!-- Add a Playlist component -->
+			      <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
 			    </div>
 			  </div>
 			</div>
