@@ -53,6 +53,73 @@ const Spotify = {
 			}
 		});
 	}
+
+	savePlaylist(playlistName, trackUris) {
+		if (!playlistName || !trackUris.length)) {
+			return;
+		}
+
+		const accessToken = this.getAccessToken();
+		let headers = {
+			`Authorization: Bearer ${accessToken}`
+		};
+		let userId;
+
+		//Get user ID
+		fetch('https://api.spotify.com/v1/me', {
+			headers: headers
+		}).then(response => {
+			if (response.ok) {
+				return response.json();
+			}
+
+			throw new Error('Request failed!');
+		}, networkError => {
+			console.log(networkError.message);
+		}).then(jsonResponse => {
+			userId = jsonResponse.id;
+
+			headers = {
+				Authorization: `Bearer ${accessToken}`,
+				'Content-Type': 'application/json'
+			};
+			//Use user ID to create a new playlist
+			return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+				headers: headers,
+				method: 'POST',
+				body: JSON.stringify({
+					name: playlistName
+				})
+			}).then(response => {
+				if (response.ok) {
+					return response.json();
+				}
+
+				throw new Error('Request failed!');
+			}, networkError => {
+				console.log(networkError.message);
+			}).then(jsonResponse => {
+				let playlistId = jsonResponse.id;
+
+				//Use new playlist ID to add tracks to
+				fetch(`https://api.spotify.com/v1/users/${userId}/playlists/${playlistId}/tracks`, {
+					headers: headers,
+					method: 'POST',
+					body: JSON.stringify({
+						uris: trackUris
+					})
+				}).then(response => {
+					if (response.ok) {
+						return response.json();
+					}
+
+					throw new Error('Request failed!');
+				}, networkError => {
+					console.log(networkError.message);
+				}).then(jsonResponse => jsonResponse);
+			});
+		});
+	}
 }
 
 export default Spotify;
