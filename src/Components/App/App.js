@@ -3,7 +3,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults';
 import Playlist from '../Playlist/Playlist';
-import Spotify from '../util/Spotify';
+import Spotify from '../../util/Spotify';
 
 class App extends React.Component {
 	constructor(props) {
@@ -14,35 +14,15 @@ class App extends React.Component {
 					name: 'Clocks',
 					artist: 'Coldplay',
 					album: 'A Rush of Blood to the Head'
-				},
-				{
-					name: 'Scientist',
-					artist: 'Coldplay',
-					album: 'A Rush of Blood to the Head'
-				},
-				{
-					name: 'Strawberry Swing',
-					artist: 'Coldplay',
-					album: 'Viva la Vida'
 				}
 			],
 			playlistName: 'My Songs',
 			playlistTracks: [
 				{
-					name: 'Tiny Dancer',
-					artist: 'Elton John',
-					album: 'Madman Across the Water'
-				},
-				{
-					name: 'Stronger',
-					artist: 'Britney Spears',
-					album: 'Oops I Did it Again'
-				},
-				{
-					name: 'Brazil',
-					artist: 'Deadmau5',
-					album: 'Random Album Title'
-				},
+					name: 'Clocks',
+					artist: 'Coldplay',
+					album: 'A Rush of Blood to the Head'
+				}
 			]
 		};
 
@@ -110,3 +90,5 @@ class App extends React.Component {
 		);
 	}
 }
+
+export default App;

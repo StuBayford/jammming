@@ -12,19 +12,22 @@ const Spotify = {
 
 		const accessTokenMatch = window.location.href.match(/access_token=([^&]*)/);
 		const expiresInMatch = window.location.href.match(/expires_in=([^&]*)/);
+
+		console.log(accessTokenMatch);
+		console.log(expiresInMatch);
 				
 		if (accessTokenMatch && expiresInMatch) {
-			accessToken = accessTokenMatch[0];
-			const expiresIn = Number(expiresInMatch[0]);
+			accessToken = accessTokenMatch[1];
+			const expiresIn = Number(expiresInMatch[1]);
 
 			window.setTimeout(() => accessToken = '', expiresIn * 1000); //Sets accessToken to expire at the value for expiresIn
 			window.history.pushState('Access Token', null, '/'); //clears the parameters from the URL so the app doesn't try grabbing the access token after it has expired
 
 			return accessToken;
 		} else {
-			window.location(`https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectUri}`);
+			window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&show_dialog=true&redirect_uri=${redirectUri}`;
 		}
-	}
+	},
 
 	search(term) {
 		let accessToken = this.getAccessToken();
@@ -47,21 +50,21 @@ const Spotify = {
 					id: track.id,
 					name: track.name,
 					artist: track.artists[0].name,
-					album: album.name,
+					album: track.album.name,
 					uri: track.uri
 				}));
 			}
 		});
-	}
+	},
 
 	savePlaylist(playlistName, trackUris) {
-		if (!playlistName || !trackUris.length)) {
+		if (!playlistName || !trackUris.length) {
 			return;
 		}
 
 		const accessToken = this.getAccessToken();
 		let headers = {
-			`Authorization: Bearer ${accessToken}`
+			Authorization: `Bearer ${accessToken}`
 		};
 		let userId;
 
