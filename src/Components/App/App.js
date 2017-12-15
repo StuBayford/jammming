@@ -46,7 +46,7 @@ class App extends React.Component {
 		let tracks = this.state.playlistTracks;
 		let trackIndex = tracks.indexOf(track);
 
-		if (trackIndex != -1) {
+		if (trackIndex !== -1) {
 			tracks.splice(track, 1);
 			this.setState({playlistTracks: tracks});
 		}
