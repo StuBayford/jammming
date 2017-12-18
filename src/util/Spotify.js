@@ -1,5 +1,5 @@
 const clientId = 'df5b1d00f2804768aaa99617ae19d6c2';
-const redirectUri = 'http://localhost:3000/';
+const redirectUri = 'http://jammming-bayford.surge.sh';
 let accessToken;
 
 const Spotify = {
@@ -44,7 +44,7 @@ const Spotify = {
 			console.log(networkError.message);
 		}).then(jsonResponse => {
 			if(jsonResponse.tracks) {
-				jsonResponse.tracks.items.map(track => ({
+				return jsonResponse.tracks.items.map(track => ({
 					id: track.id,
 					name: track.name,
 					artist: track.artists[0].name,
