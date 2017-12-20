@@ -33,7 +33,7 @@ class App extends React.Component {
 			});
 		}
 
-		filterSearch();
+		this.filterSearch();
 	}
 
 	removeTrack(track) {
@@ -45,7 +45,7 @@ class App extends React.Component {
 			this.setState({playlistTracks: tracks});
 		}
 
-		filterSearch();
+		this.filterSearch();
 	}
 
 	updatePlaylistName(name) {
@@ -58,11 +58,13 @@ class App extends React.Component {
 			this.setState({searchResults: results})
 		});
 
-		filterSearch();
+		this.filterSearch();
 	}
 
 	filterSearch() {
 		let playlistTrackIds = this.state.playlistTracks.map(track => track.id);
+		console.log(this.state.playlistTracks);
+		console.log(playlistTrackIds);
 
 		let filteredSearchResults = this.state.searchResults.map(track => {
 			if (playlistTrackIds.includes(track.id)) {
@@ -71,6 +73,9 @@ class App extends React.Component {
 
 			return track;
 		})
+
+		console.log(this.state.searchResults);
+		console.log(filteredSearchResults);
 
 		this.setState({
 			filteredSearchResults: filteredSearchResults
