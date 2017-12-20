@@ -25,8 +25,10 @@ class App extends React.Component {
 		let tracks = this.state.playlistTracks;
 
 		if (this.state.playlistTracks.indexOf(track) === -1) {
-			tracks.push(track);
-			this.setState({playlistTracks: tracks});
+			let updatedPlaylistTracks = this.state.playlistTracks.concat(track);
+			this.setState({
+				playlistTracks: tracks
+			});
 		}
 	}
 
