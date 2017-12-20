@@ -1,5 +1,5 @@
 const clientId = 'df5b1d00f2804768aaa99617ae19d6c2';
-const redirectUri = 'http://jammming-bayford.surge.sh';
+const redirectUri = 'http://localhost:3000/'; //http://jammming-bayford.surge.sh
 let accessToken;
 
 const Spotify = {
